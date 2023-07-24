@@ -4,6 +4,8 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 
 
 # Streamlit
+st.set_page_config(layout="wide")
+
 st.title("validate model")
 
 st.header("upload File")
@@ -57,7 +59,7 @@ def printResultDf(output_list, input_manual, input_ai):
         recall_max_f1 = output_list[i][max_f1_index : max_f1_index+1]['recall'].iloc[-1]
 
         row = pd.Series([output_list[i].max()[1], output_list[i].max()[2],output_list[i].max()[3],output_list[i].max()[4],accuracy_max_f1,precision_max_f1,recall_max_f1,int(input_manual.iloc[:, i].sum()), auc_value], index=cols)
-        result_df = result_df.append(row)
+        result_df = pd.concat([result_df, pd.DataFrame([row])], ignore_index=True)
     return result_df
 
 if st.button(label='Start!'):
