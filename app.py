@@ -43,11 +43,10 @@ def calculateDf(input_manual, input_ai):
     return output_list, output_col_list
 
 def printResultDf(output_list, input_manual, input_ai):
-    cols = ["accuracy", "precision", "recall", "f1", "train_count", "AUC"]
+    cols = ["accuracy", "precision", "recall", "f1", "accuracy(max(f1))", "precision(max(f1))", "recall(max(f1))", "train_count", "AUC"]
 
     result_df = pd.DataFrame(columns=cols)
 
-    cols = ["accuracy", "precision", "recall", "f1", "train_count", "AUC"]
     for i in range(len(output_list)):
         fpr, tpr, thresholds = roc_curve(input_manual.iloc[:, i], input_ai.iloc[:, i])
         auc_value = auc(fpr, tpr)
