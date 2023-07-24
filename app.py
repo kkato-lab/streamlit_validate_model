@@ -57,7 +57,7 @@ def printResultDf(output_list, input_manual, input_ai):
         precision_max_f1 = output_list[i][max_f1_index : max_f1_index+1]['precision'].iloc[-1]
         recall_max_f1 = output_list[i][max_f1_index : max_f1_index+1]['recall'].iloc[-1]
 
-        row = pd.Series([output_list[i].max()[1], output_list[i].max()[2],output_list[i].max()[3],output_list[i].max()[4],accuracy_max_f1,precision_max_f1,recall_max_f1,int(input_manual.iloc[:, i].sum()), auc_value], index=cols, name=tag_list[i])
+        row = pd.Series([output_list[i].max()[1], output_list[i].max()[2],output_list[i].max()[3],output_list[i].max()[4],accuracy_max_f1,precision_max_f1,recall_max_f1,int(input_manual.iloc[:, i].sum()), auc_value], index=cols)
         result_df = result_df.append(row)
     return result_df
 
